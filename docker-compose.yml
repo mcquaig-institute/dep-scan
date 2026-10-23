@@ -6,8 +6,8 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - /mnt/work:/app # Set this to your directory containing sources
-      - /tmp:/tmp
+      - ../mo2_app/:/app # Set this to your directory containing sources
+      - ../mo2_app/tmp:/tmp
     entrypoint: node /opt/cdxgen/bin/cdxgen.js --server --server-host 0.0.0.0 --server-port 9090
 
   depscan:
@@ -15,8 +15,8 @@ services:
     ports:
       - "7070:7070"
     volumes:
-      - /mnt/work:/app # Set this to your directory containing sources
-      - /tmp:/tmp
+      - ../mo2_app/:/app # Set this to your directory containing sources
+      - ../mo2_app/tmp:/tmp
     entrypoint: depscan --server --server-host 0.0.0.0 --server-port 7070 --cdxgen-server http://cdxgen:9090
     environment:
       DEPSCAN_SERVER_API_KEY: ${DEPSCAN_SERVER_API_KEY:-dev-only-change-me}
